@@ -1,0 +1,12 @@
+{
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "name": "uigeo",
+  "peerDependencies": {
+    "@angular/common": "^20.3.0",
+    "@angular/core": "^20.3.0"
+  },
+  "sideEffects": false,
+  "version": "0.0.1"
+}
