@@ -62,7 +62,7 @@ export class Transformer implements OnInit, OnDestroy {
   isTransforming = computed(() => this.isMoving() || this.isResizing() || this.isRotating());
 
   private containerSize: Size = {width: 0, height: 0};
-  private currentAnchor: string | null = null;
+  private resizeAnchor: Position = {x: 0, y: 0};
   private cursorPosition: Position = {x: 0, y: 0};
   private startLeft = 0;
   private startTop = 0;
@@ -132,7 +132,6 @@ export class Transformer implements OnInit, OnDestroy {
     this.isMoving.set(false);
     this.isResizing.set(false);
     this.isRotating.set(false);
-    this.currentAnchor = null;
     this.changeDocumentCursor('');
     this.cursorService.setCursor(CursorType.Auto);
   }
@@ -165,11 +164,11 @@ export class Transformer implements OnInit, OnDestroy {
     this.position.set({x, y});
   }
 
-  startResize(event: MouseEvent, anchor: string) {
+  startResize(event: MouseEvent, anchor: Position) {
     event.preventDefault();
     event.stopPropagation();
     this.isResizing.set(true);
-    this.currentAnchor = anchor;
+    this.resizeAnchor = anchor;
     this.startX = event.clientX;
     this.startY = event.clientY;
     this.startLeft = this.position().x * this.containerSize.width;
@@ -182,47 +181,10 @@ export class Transformer implements OnInit, OnDestroy {
     const dx = this.cursorPosition.x - this.startX;
     const dy = this.cursorPosition.y - this.startY;
 
-    let newWidth = this.startWidth;
-    let newHeight = this.startHeight;
-    let newLeft = this.startLeft;
-    let newTop = this.startTop;
-
-    switch (this.currentAnchor) {
-      case 'top-left':
-        newWidth = this.startWidth - dx;
-        newHeight = this.startHeight - dy;
-        newLeft = this.startLeft + dx;
-        newTop = this.startTop + dy;
-        break;
-      case 'top-right':
-        newWidth = this.startWidth + dx;
-        newHeight = this.startHeight - dy;
-        newTop = this.startTop + dy;
-        break;
-      case 'bottom-left':
-        newWidth = this.startWidth - dx;
-        newHeight = this.startHeight + dy;
-        newLeft = this.startLeft + dx;
-        break;
-      case 'bottom-right':
-        newWidth = this.startWidth + dx;
-        newHeight = this.startHeight + dy;
-        break;
-      case 'top':
-        newHeight = this.startHeight - dy;
-        newTop = this.startTop + dy;
-        break;
-      case 'bottom':
-        newHeight = this.startHeight + dy;
-        break;
-      case 'left':
-        newWidth = this.startWidth - dx;
-        newLeft = this.startLeft + dx;
-        break;
-      case 'right':
-        newWidth = this.startWidth + dx;
-        break;
-    }
+    let newWidth = this.startWidth + dx * this.resizeAnchor.x;
+    let newHeight = this.startHeight + dy * this.resizeAnchor.y;
+    let newLeft = this.startLeft + dx * (this.resizeAnchor.x < 0 ? 1 : 0);
+    let newTop = this.startTop + dy * (this.resizeAnchor.y < 0 ? 1 : 0);
 
     const minWidth = 14;
     const minHeight = 14;

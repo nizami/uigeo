@@ -13,7 +13,7 @@
     class="resize-anchor"
     (mousemove)="onEnterLeave($event, CursorType.Resize, 315)"
     (mouseleave)="onEnterLeave($event, CursorType.Auto, 0)"
-    (mousedown)="startResize($event, 'top-left')"
+    (mousedown)="startResize($event, {x: -1, y: -1})"
   ></div>
 </div>
 
@@ -28,7 +28,7 @@
     class="resize-anchor"
     (mousemove)="onEnterLeave($event, CursorType.Resize, 45)"
     (mouseleave)="onEnterLeave($event, CursorType.Auto, 0)"
-    (mousedown)="startResize($event, 'top-right')"
+    (mousedown)="startResize($event, {x: 1, y: -1})"
   ></div>
 </div>
 
@@ -43,7 +43,7 @@
     class="resize-anchor"
     (mousemove)="onEnterLeave($event, CursorType.Resize, 225)"
     (mouseleave)="onEnterLeave($event, CursorType.Auto, 0)"
-    (mousedown)="startResize($event, 'bottom-left')"
+    (mousedown)="startResize($event, {x: -1, y: 1})"
   ></div>
 </div>
 
@@ -58,7 +58,7 @@
     class="resize-anchor"
     (mousemove)="onEnterLeave($event, CursorType.Resize, 135)"
     (mouseleave)="onEnterLeave($event, CursorType.Auto, 0)"
-    (mousedown)="startResize($event, 'bottom-right')"
+    (mousedown)="startResize($event, {x: 1, y: 1})"
   ></div>
 </div>
 
@@ -66,23 +66,23 @@
   class="border border-top"
   (mousemove)="onEnterLeave($event, CursorType.Resize, 0)"
   (mouseleave)="onEnterLeave($event, CursorType.Auto, 0)"
-  (mousedown)="startResize($event, 'top')"
+  (mousedown)="startResize($event, {x: 0, y: -1})"
 ></div>
 <div
   class="border border-bottom"
   (mousemove)="onEnterLeave($event, CursorType.Resize, 180)"
   (mouseleave)="onEnterLeave($event, CursorType.Auto, 0)"
-  (mousedown)="startResize($event, 'bottom')"
+  (mousedown)="startResize($event, {x: 0, y: 1})"
 ></div>
 <div
   class="border border-left"
   (mousemove)="onEnterLeave($event, CursorType.Resize, 270)"
   (mouseleave)="onEnterLeave($event, CursorType.Auto, 0)"
-  (mousedown)="startResize($event, 'left')"
+  (mousedown)="startResize($event, {x: -1, y: 0})"
 ></div>
 <div
   class="border border-right"
   (mousemove)="onEnterLeave($event, CursorType.Resize, 90)"
   (mouseleave)="onEnterLeave($event, CursorType.Auto, 0)"
-  (mousedown)="startResize($event, 'right')"
+  (mousedown)="startResize($event, {x: 1, y: 0})"
 ></div>
