@@ -1,0 +1,160 @@
+:host {
+  position: absolute;
+  display: block;
+  will-change: transform;
+  position: absolute;
+  border: 1px solid transparent;
+
+  &.selected {
+    border: 1px solid var(--geo-transformer-border-color, #007bff);
+  }
+}
+
+.content {
+  width: 100%;
+  height: 100%;
+}
+
+.anchor {
+  position: absolute;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 0.125rem;
+  border: solid 1px var(--geo-transformer-border-color, #007bff);
+  outline: solid 1px var(--geo-transformer-background-color, white);
+  background-color: var(--geo-transformer-background-color, white);
+
+  .rotate-anchor {
+    position: absolute;
+    display: block;
+    content: "";
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .resize-anchor {
+    position: absolute;
+    display: block;
+    content: "";
+    left: -0.125rem;
+    top: -0.125rem;
+    width: 0.75rem;
+    height: 0.75rem;
+  }
+}
+
+.top-left {
+  top: -0.25rem;
+  left: -0.25rem;
+
+  .rotate-anchor {
+    bottom: -0.25rem;
+    right: -0.25rem;
+    rotate: -45deg;
+  }
+}
+
+.top-right {
+  top: -0.25rem;
+  right: -0.25rem;
+
+  .rotate-anchor {
+    bottom: -0.25rem;
+    left: -0.25rem;
+    rotate: 45deg;
+  }
+}
+
+.bottom-left {
+  bottom: -0.25rem;
+  left: -0.25rem;
+
+  .rotate-anchor {
+    top: -0.25rem;
+    right: -0.25rem;
+    rotate: 45deg;
+  }
+}
+
+.bottom-right {
+  bottom: -0.25rem;
+  right: -0.25rem;
+
+  .rotate-anchor {
+    top: -0.25rem;
+    left: -0.25rem;
+    rotate: 45deg;
+  }
+}
+
+.rotate {
+  top: -2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 50%;
+}
+
+.rotate-title {
+  top: -2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 50%;
+}
+
+.border {
+  position: absolute;
+}
+
+.border-top {
+  left: 0.25rem;
+  top: -0.25rem;
+  width: calc(100% - 0.5rem);
+  height: 0.5rem;
+}
+
+.border-bottom {
+  left: 0.25rem;
+  bottom: -0.25rem;
+  width: calc(100% - 0.5rem);
+  height: 0.5rem;
+}
+
+.border-left {
+  left: -0.25rem;
+  top: 0.25rem;
+  width: 0.5rem;
+  height: calc(100% - 0.5rem);
+}
+
+.border-right {
+  right: -0.25rem;
+  top: 0.25rem;
+  width: 0.5rem;
+  height: calc(100% - 0.5rem);
+}
+
+// :host:not(.transforming) {
+//   .top-left,
+//   .bottom-right {
+//     cursor: nwse-resize;
+//   }
+
+//   .top-right,
+//   .bottom-left {
+//     cursor: nesw-resize;
+//   }
+
+//   .rotate {
+//     cursor: grab;
+//   }
+
+//   .border-top,
+//   .border-bottom {
+//     cursor: ns-resize;
+//   }
+
+//   .border-left,
+//   .border-right {
+//     cursor: ew-resize;
+//   }
+// }
