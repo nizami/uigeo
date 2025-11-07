@@ -1,0 +1,12 @@
+{
+  "$schema": "node_modules/barrelize/schema.json",
+  "barrels": [
+    {
+      "root": "projects/uigeo/src",
+      "name": "public-api.ts",
+      "include": ["**/*.ts"],
+
+      "exclude": ["**/*.test.ts", "**/public-api.ts", "**/*.d.ts"]
+    }
+  ]
+}
