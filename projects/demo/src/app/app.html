@@ -1,13 +1,13 @@
 <router-outlet />
 
-<geo-canvas #div class="cursor-rotate-15" style="width: 1200px; height: 1200px; background-color: bisque">
+<geo-canvas #div class="cursor-rotate-15" style="width: 1200px; height: 800px; background-color: #222">
   <geo-transformer
-    [position]="{x: 20, y: 20}"
-    [size]="{width: 20, height: 20}"
+    [position]="{x: 0.2, y: 0.2}"
+    [size]="{width: 0.2, height: 0.2}"
     [selected]="true"
     [movable]="true"
     [resizable]="true"
-    [rotatable]="true"
+    [rotatable]="false"
   >
     <h1>abc</h1>
   </geo-transformer>

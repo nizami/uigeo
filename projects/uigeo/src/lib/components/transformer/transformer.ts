@@ -12,8 +12,9 @@ import {
   OnInit,
   signal,
 } from '@angular/core';
+import {Position} from '../../models/position.model';
+import {Size} from '../../models/size.model';
 import {CursorService, CursorType} from '../../services/cursor.service';
-import {Position, Size} from './editor-element-model';
 
 @Component({
   selector: 'geo-transformer',
@@ -62,7 +63,7 @@ export class Transformer implements OnInit, OnDestroy {
   isTransforming = computed(() => this.isMoving() || this.isResizing() || this.isRotating());
 
   private containerSize: Size = {width: 0, height: 0};
-  private resizeAnchor: Position = {x: 0, y: 0};
+  private currentAnchor: Position = {x: 0, y: 0};
   private cursorPosition: Position = {x: 0, y: 0};
   private startLeft = 0;
   private startTop = 0;
@@ -168,7 +169,7 @@ export class Transformer implements OnInit, OnDestroy {
     event.preventDefault();
     event.stopPropagation();
     this.isResizing.set(true);
-    this.resizeAnchor = anchor;
+    this.currentAnchor = anchor;
     this.startX = event.clientX;
     this.startY = event.clientY;
     this.startLeft = this.position().x * this.containerSize.width;
@@ -181,10 +182,10 @@ export class Transformer implements OnInit, OnDestroy {
     const dx = this.cursorPosition.x - this.startX;
     const dy = this.cursorPosition.y - this.startY;
 
-    let newWidth = this.startWidth + dx * this.resizeAnchor.x;
-    let newHeight = this.startHeight + dy * this.resizeAnchor.y;
-    let newLeft = this.startLeft + dx * (this.resizeAnchor.x < 0 ? 1 : 0);
-    let newTop = this.startTop + dy * (this.resizeAnchor.y < 0 ? 1 : 0);
+    let newWidth = this.startWidth + dx * this.currentAnchor.x;
+    let newHeight = this.startHeight + dy * this.currentAnchor.y;
+    let newLeft = this.startLeft + dx * (this.currentAnchor.x < 0 ? 1 : 0);
+    let newTop = this.startTop + dy * (this.currentAnchor.y < 0 ? 1 : 0);
 
     const minWidth = 14;
     const minHeight = 14;
