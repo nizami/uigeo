@@ -204,15 +204,14 @@ export class Transformer implements OnInit, OnDestroy {
     this.position.set({x, y});
   }
 
-  startRotate(event: MouseEvent, startCursorAngle: number) {
+  startRotate(event: MouseEvent, anchor: Position) {
     event.preventDefault();
     event.stopPropagation();
 
     this.isRotating.set(true);
     this.startX = event.clientX;
     this.startY = event.clientY;
-    this.startCursorAngle = startCursorAngle;
-    // this.startAngle = this.rotation();
+    this.startCursorAngle = ((Math.atan2(anchor.x, anchor.y * -1) * 180) / Math.PI + 360) % 360;
 
     const rect = this.elRef.nativeElement.getBoundingClientRect();
     const centerX = rect.left + rect.width / 2;

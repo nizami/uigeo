@@ -7,7 +7,7 @@
     class="rotate-anchor"
     (mousemove)="onEnterLeave($event, CursorType.Rotate, 315)"
     (mouseleave)="onEnterLeave($event, CursorType.Auto, 0)"
-    (mousedown)="startRotate($event, 315)"
+    (mousedown)="startRotate($event, {x: -1, y: -1})"
   ></div>
   <div
     class="resize-anchor"
@@ -22,7 +22,7 @@
     class="rotate-anchor"
     (mousemove)="onEnterLeave($event, CursorType.Rotate, 45)"
     (mouseleave)="onEnterLeave($event, CursorType.Auto, 0)"
-    (mousedown)="startRotate($event, 45)"
+    (mousedown)="startRotate($event, {x: 1, y: -1})"
   ></div>
   <div
     class="resize-anchor"
@@ -37,7 +37,7 @@
     class="rotate-anchor"
     (mousemove)="onEnterLeave($event, CursorType.Rotate, 225)"
     (mouseleave)="onEnterLeave($event, CursorType.Auto, 0)"
-    (mousedown)="startRotate($event, 225)"
+    (mousedown)="startRotate($event, {x: -1, y: 1})"
   ></div>
   <div
     class="resize-anchor"
@@ -52,7 +52,7 @@
     class="rotate-anchor"
     (mousemove)="onEnterLeave($event, CursorType.Rotate, 135)"
     (mouseleave)="onEnterLeave($event, CursorType.Auto, 0)"
-    (mousedown)="startRotate($event, 135)"
+    (mousedown)="startRotate($event, {x: 1, y: 1})"
   ></div>
   <div
     class="resize-anchor"
