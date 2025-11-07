@@ -5,14 +5,14 @@
 <div #cornerAnchor class="anchor top-left">
   <div
     class="rotate-anchor"
-    (mousemove)="onEnterLeave($event, CursorType.Rotate, 315)"
-    (mouseleave)="onEnterLeave($event, CursorType.Auto, 0)"
+    (mousemove)="onEnterLeave(CursorType.Rotate, 315)"
+    (mouseleave)="onEnterLeave(CursorType.Auto, 0)"
     (mousedown)="startRotate($event, {x: -1, y: -1})"
   ></div>
   <div
     class="resize-anchor"
-    (mousemove)="onEnterLeave($event, CursorType.Resize, 315)"
-    (mouseleave)="onEnterLeave($event, CursorType.Auto, 0)"
+    (mousemove)="onEnterLeave(CursorType.Resize, 315)"
+    (mouseleave)="onEnterLeave(CursorType.Auto, 0)"
     (mousedown)="startResize($event, {x: -1, y: -1})"
   ></div>
 </div>
@@ -20,14 +20,14 @@
 <div #cornerAnchor class="anchor top-right">
   <div
     class="rotate-anchor"
-    (mousemove)="onEnterLeave($event, CursorType.Rotate, 45)"
-    (mouseleave)="onEnterLeave($event, CursorType.Auto, 0)"
+    (mousemove)="onEnterLeave(CursorType.Rotate, 45)"
+    (mouseleave)="onEnterLeave(CursorType.Auto, 0)"
     (mousedown)="startRotate($event, {x: 1, y: -1})"
   ></div>
   <div
     class="resize-anchor"
-    (mousemove)="onEnterLeave($event, CursorType.Resize, 45)"
-    (mouseleave)="onEnterLeave($event, CursorType.Auto, 0)"
+    (mousemove)="onEnterLeave(CursorType.Resize, 45)"
+    (mouseleave)="onEnterLeave(CursorType.Auto, 0)"
     (mousedown)="startResize($event, {x: 1, y: -1})"
   ></div>
 </div>
@@ -35,14 +35,14 @@
 <div #cornerAnchor class="anchor bottom-left">
   <div
     class="rotate-anchor"
-    (mousemove)="onEnterLeave($event, CursorType.Rotate, 225)"
-    (mouseleave)="onEnterLeave($event, CursorType.Auto, 0)"
+    (mousemove)="onEnterLeave(CursorType.Rotate, 225)"
+    (mouseleave)="onEnterLeave(CursorType.Auto, 0)"
     (mousedown)="startRotate($event, {x: -1, y: 1})"
   ></div>
   <div
     class="resize-anchor"
-    (mousemove)="onEnterLeave($event, CursorType.Resize, 225)"
-    (mouseleave)="onEnterLeave($event, CursorType.Auto, 0)"
+    (mousemove)="onEnterLeave(CursorType.Resize, 225)"
+    (mouseleave)="onEnterLeave(CursorType.Auto, 0)"
     (mousedown)="startResize($event, {x: -1, y: 1})"
   ></div>
 </div>
@@ -50,39 +50,39 @@
 <div #cornerAnchor class="anchor bottom-right">
   <div
     class="rotate-anchor"
-    (mousemove)="onEnterLeave($event, CursorType.Rotate, 135)"
-    (mouseleave)="onEnterLeave($event, CursorType.Auto, 0)"
+    (mousemove)="onEnterLeave(CursorType.Rotate, 135)"
+    (mouseleave)="onEnterLeave(CursorType.Auto, 0)"
     (mousedown)="startRotate($event, {x: 1, y: 1})"
   ></div>
   <div
     class="resize-anchor"
-    (mousemove)="onEnterLeave($event, CursorType.Resize, 135)"
-    (mouseleave)="onEnterLeave($event, CursorType.Auto, 0)"
+    (mousemove)="onEnterLeave(CursorType.Resize, 135)"
+    (mouseleave)="onEnterLeave(CursorType.Auto, 0)"
     (mousedown)="startResize($event, {x: 1, y: 1})"
   ></div>
 </div>
 
 <div
   class="border border-top"
-  (mousemove)="onEnterLeave($event, CursorType.Resize, 0)"
-  (mouseleave)="onEnterLeave($event, CursorType.Auto, 0)"
+  (mousemove)="onEnterLeave(CursorType.Resize, 0)"
+  (mouseleave)="onEnterLeave(CursorType.Auto, 0)"
   (mousedown)="startResize($event, {x: 0, y: -1})"
 ></div>
 <div
   class="border border-bottom"
-  (mousemove)="onEnterLeave($event, CursorType.Resize, 180)"
-  (mouseleave)="onEnterLeave($event, CursorType.Auto, 0)"
+  (mousemove)="onEnterLeave(CursorType.Resize, 180)"
+  (mouseleave)="onEnterLeave(CursorType.Auto, 0)"
   (mousedown)="startResize($event, {x: 0, y: 1})"
 ></div>
 <div
   class="border border-left"
-  (mousemove)="onEnterLeave($event, CursorType.Resize, 270)"
-  (mouseleave)="onEnterLeave($event, CursorType.Auto, 0)"
+  (mousemove)="onEnterLeave(CursorType.Resize, 270)"
+  (mouseleave)="onEnterLeave(CursorType.Auto, 0)"
   (mousedown)="startResize($event, {x: -1, y: 0})"
 ></div>
 <div
   class="border border-right"
-  (mousemove)="onEnterLeave($event, CursorType.Resize, 90)"
-  (mouseleave)="onEnterLeave($event, CursorType.Auto, 0)"
+  (mousemove)="onEnterLeave(CursorType.Resize, 90)"
+  (mouseleave)="onEnterLeave(CursorType.Auto, 0)"
   (mousedown)="startResize($event, {x: 1, y: 0})"
 ></div>

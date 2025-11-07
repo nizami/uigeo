@@ -219,7 +219,7 @@ export class Transformer implements OnInit, OnDestroy {
     this.startAngle = this.rotation() - this.getAngle(this.startX, this.startY, centerX, centerY);
   }
 
-  onEnterLeave(event: MouseEvent, cursorType: CursorType, cursorInitialAngle: number): void {
+  onEnterLeave(cursorType: CursorType, cursorInitialAngle: number): void {
     if (this.isTransforming()) {
       return;
     }
