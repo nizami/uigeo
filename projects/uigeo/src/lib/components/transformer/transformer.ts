@@ -32,7 +32,7 @@ import {CursorService, CursorType} from '../../services/cursor.service';
     '[style.top.%]': 'styleTop()',
     '[style.width.%]': 'styleWidth()',
     '[style.height.%]': 'styleHeight()',
-    '[style.transform]': 'styleTransform()',
+    '[style.rotate.deg]': 'rotation()',
     '(mousedown)': 'onMouseDown($event)',
   },
 })
@@ -55,7 +55,6 @@ export class Transformer implements OnInit, OnDestroy {
   styleTop = computed(() => this.position().y * 100);
   styleWidth = computed(() => this.size().width * 100);
   styleHeight = computed(() => this.size().height * 100);
-  styleTransform = computed(() => `rotate(${this.rotation()}deg)`);
 
   isMoving = signal(false);
   isResizing = signal(false);
@@ -147,6 +146,14 @@ export class Transformer implements OnInit, OnDestroy {
     }
   }
 
+  onEnterLeave(cursorType: CursorType, cursorInitialAngle: number): void {
+    if (this.isTransforming()) {
+      return;
+    }
+
+    this.cursorService.setCursor(cursorType, this.rotation() + cursorInitialAngle);
+  }
+
   startMove(event: MouseEvent) {
     this.isMoving.set(true);
     this.startX = event.clientX - this.position().x * this.containerSize.width;
@@ -209,6 +216,7 @@ export class Transformer implements OnInit, OnDestroy {
     event.stopPropagation();
 
     this.isRotating.set(true);
+    this.currentAnchor = anchor;
     this.startX = event.clientX;
     this.startY = event.clientY;
     this.startCursorAngle = ((Math.atan2(anchor.x, anchor.y * -1) * 180) / Math.PI + 360) % 360;
@@ -217,14 +225,6 @@ export class Transformer implements OnInit, OnDestroy {
     const centerX = rect.left + rect.width / 2;
     const centerY = rect.top + rect.height / 2;
     this.startAngle = this.rotation() - this.getAngle(this.startX, this.startY, centerX, centerY);
-  }
-
-  onEnterLeave(cursorType: CursorType, cursorInitialAngle: number): void {
-    if (this.isTransforming()) {
-      return;
-    }
-
-    this.cursorService.setCursor(cursorType, this.rotation() + cursorInitialAngle);
   }
 
   private handleRotating() {
@@ -250,19 +250,3 @@ export class Transformer implements OnInit, OnDestroy {
     // this.document.documentElement.style.cursor = cursor;
   }
 }
-
-// function setWidthWithCompensation(elem, newWidth) {
-//   const style = getComputedStyle(elem);
-//   const angle = parseFloat(style.transform.match(/rotate\(([-\d.]+)deg\)/)?.[1] || 0) * Math.PI / 180;
-
-//   const oldWidth = parseFloat(style.width);
-//   const dx = (newWidth - oldWidth) / 2 * Math.cos(angle);
-//   const dy = (newWidth - oldWidth) / 2 * Math.sin(angle);
-
-//   const oldLeft = parseFloat(style.left);
-//   const oldTop = parseFloat(style.top);
-
-//   elem.style.width = newWidth + 'px';
-//   elem.style.left = (oldLeft - dx) + 'px';
-//   elem.style.top = (oldTop - dy) + 'px';
-// }
