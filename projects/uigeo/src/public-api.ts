@@ -1,5 +1,4 @@
 export * from './lib/components/canvas/canvas';
-export * from './lib/components/cursor/cursor';
 export * from './lib/components/transformer/transformer';
 export * from './lib/models/position.model';
 export * from './lib/models/size.model';

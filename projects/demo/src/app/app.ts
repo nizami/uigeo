@@ -1,10 +1,10 @@
 import {Component} from '@angular/core';
 import {RouterOutlet} from '@angular/router';
-import { Cursor, Transformer, Canvas } from 'uigeo';
+import {Canvas, Transformer} from 'uigeo';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Transformer, Cursor, Canvas],
+  imports: [RouterOutlet, Transformer, Canvas],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })
