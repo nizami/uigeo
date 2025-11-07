@@ -4,6 +4,7 @@
   will-change: transform;
   position: absolute;
   border: 1px solid transparent;
+  transform-origin: center;
 
   &.selected {
     border: solid 1px var(--geo-transformer-border-color, #007bff);
@@ -12,7 +13,7 @@
   &:not(.selected) .anchor
   // &:not(&.resizable) .resize-anchor,
   // &:not(&.resizable) .border &:not(&.rotatable) .rotate-anchor
-   {
+  {
     display: none;
   }
 }

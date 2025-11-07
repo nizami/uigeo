@@ -47,13 +47,13 @@ export class Transformer implements OnInit, OnDestroy {
   selected = model(false);
 
   position = model<Position>({x: 0, y: 0});
-  size = model<Size>({width: 10, height: 10});
+  size = model<Size>({width: 0.2, height: 0.2});
   rotation = model<number>(0);
 
-  styleLeft = computed(() => this.position().x);
-  styleTop = computed(() => this.position().y);
-  styleWidth = computed(() => this.size().width);
-  styleHeight = computed(() => this.size().height);
+  styleLeft = computed(() => this.position().x * 100);
+  styleTop = computed(() => this.position().y * 100);
+  styleWidth = computed(() => this.size().width * 100);
+  styleHeight = computed(() => this.size().height * 100);
   styleTransform = computed(() => `rotate(${this.rotation()}deg)`);
 
   isMoving = signal(false);
@@ -149,8 +149,8 @@ export class Transformer implements OnInit, OnDestroy {
 
   startMove(event: MouseEvent) {
     this.isMoving.set(true);
-    this.startX = event.clientX - (this.position().x / 100) * this.containerSize.width;
-    this.startY = event.clientY - (this.position().y / 100) * this.containerSize.height;
+    this.startX = event.clientX - this.position().x * this.containerSize.width;
+    this.startY = event.clientY - this.position().y * this.containerSize.height;
 
     this.cursorService.setCursor(CursorType.Move);
   }
@@ -159,8 +159,8 @@ export class Transformer implements OnInit, OnDestroy {
     const newLeft = this.cursorPosition.x - this.startX;
     const newTop = this.cursorPosition.y - this.startY;
 
-    const x = (newLeft / this.containerSize.width) * 100;
-    const y = (newTop / this.containerSize.height) * 100;
+    const x = newLeft / this.containerSize.width;
+    const y = newTop / this.containerSize.height;
 
     this.position.set({x, y});
   }
@@ -170,12 +170,12 @@ export class Transformer implements OnInit, OnDestroy {
     event.stopPropagation();
     this.isResizing.set(true);
     this.currentAnchor = anchor;
-    this.startLeft = (this.position().x / 100) * this.containerSize.width;
-    this.startTop = (this.position().y / 100) * this.containerSize.height;
     this.startX = event.clientX;
     this.startY = event.clientY;
-    this.startWidth = (this.size().width / 100) * this.containerSize.width;
-    this.startHeight = (this.size().height / 100) * this.containerSize.height;
+    this.startLeft = this.position().x * this.containerSize.width;
+    this.startTop = this.position().y * this.containerSize.height;
+    this.startWidth = this.size().width * this.containerSize.width;
+    this.startHeight = this.size().height * this.containerSize.height;
   }
 
   private handleResizing() {
@@ -232,10 +232,10 @@ export class Transformer implements OnInit, OnDestroy {
     newLeft = Math.min(this.startLeft + this.startWidth - minWidth, newLeft);
     newTop = Math.min(this.startTop + this.startHeight - minHeight, newTop);
 
-    const width = (newWidth / this.containerSize.width) * 100;
-    const height = (newHeight / this.containerSize.height) * 100;
-    const x = (newLeft / this.containerSize.width) * 100;
-    const y = (newTop / this.containerSize.height) * 100;
+    const width = newWidth / this.containerSize.width;
+    const height = newHeight / this.containerSize.height;
+    const x = newLeft / this.containerSize.width;
+    const y = newTop / this.containerSize.height;
 
     this.size.set({width, height});
     this.position.set({x, y});
@@ -288,3 +288,19 @@ export class Transformer implements OnInit, OnDestroy {
     // this.document.documentElement.style.cursor = cursor;
   }
 }
+
+// function setWidthWithCompensation(elem, newWidth) {
+//   const style = getComputedStyle(elem);
+//   const angle = parseFloat(style.transform.match(/rotate\(([-\d.]+)deg\)/)?.[1] || 0) * Math.PI / 180;
+
+//   const oldWidth = parseFloat(style.width);
+//   const dx = (newWidth - oldWidth) / 2 * Math.cos(angle);
+//   const dy = (newWidth - oldWidth) / 2 * Math.sin(angle);
+
+//   const oldLeft = parseFloat(style.left);
+//   const oldTop = parseFloat(style.top);
+
+//   elem.style.width = newWidth + 'px';
+//   elem.style.left = (oldLeft - dx) + 'px';
+//   elem.style.top = (oldTop - dy) + 'px';
+// }
