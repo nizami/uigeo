@@ -96,7 +96,7 @@
           "defaultConfiguration": "production"
         }
       },
-      "prefix": "uigeo",
+      "prefix": "geo",
       "projectType": "library",
       "root": "projects/uigeo",
       "schematics": {
