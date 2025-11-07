@@ -22,6 +22,9 @@ import {Position, Size} from './editor-element-model';
   styleUrl: './transformer.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
+    '[class.movable]': 'movable()',
+    '[class.resizable]': 'resizable()',
+    '[class.rotatable]': 'rotatable()',
     '[class.selected]': 'selected()',
     '[class.transforming]': 'isTransforming()',
     '[style.left.%]': 'styleLeft()',
@@ -53,10 +56,10 @@ export class Transformer implements OnInit, OnDestroy {
   styleHeight = computed(() => this.size().height);
   styleTransform = computed(() => `rotate(${this.rotation()}deg)`);
 
-  isDragging = signal(false);
+  isMoving = signal(false);
   isResizing = signal(false);
   isRotating = signal(false);
-  isTransforming = computed(() => this.isDragging() || this.isResizing() || this.isRotating());
+  isTransforming = computed(() => this.isMoving() || this.isResizing() || this.isRotating());
 
   private containerSize: Size = {width: 0, height: 0};
   private currentAnchor: string | null = null;
@@ -103,11 +106,7 @@ export class Transformer implements OnInit, OnDestroy {
     event.stopPropagation();
     this.selected.set(true);
 
-    if (
-      !this.movable() ||
-      this.elRef.nativeElement !== event.target
-      // this.elRef.nativeElement.classList.contains('anchor')
-    ) {
+    if (!this.movable()) {
       return;
     }
 
@@ -119,7 +118,7 @@ export class Transformer implements OnInit, OnDestroy {
     this.cursorPosition.x = event.clientX;
     this.cursorPosition.y = event.clientY;
 
-    if (this.isDragging()) {
+    if (this.isMoving()) {
       this.handleMoving();
     } else if (this.isResizing()) {
       this.handleResizing();
@@ -130,7 +129,7 @@ export class Transformer implements OnInit, OnDestroy {
 
   @HostListener('document:mouseup')
   onMouseUp() {
-    this.isDragging.set(false);
+    this.isMoving.set(false);
     this.isResizing.set(false);
     this.isRotating.set(false);
     this.currentAnchor = null;
@@ -149,7 +148,7 @@ export class Transformer implements OnInit, OnDestroy {
   }
 
   startMove(event: MouseEvent) {
-    this.isDragging.set(true);
+    this.isMoving.set(true);
     this.startX = event.clientX - (this.position().x / 100) * this.containerSize.width;
     this.startY = event.clientY - (this.position().y / 100) * this.containerSize.height;
 

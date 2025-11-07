@@ -1,99 +1,88 @@
-<ng-content></ng-content>
+<div #content class="content">
+  <ng-content></ng-content>
+</div>
 
-@if (selected()) {
-  @if (resizable()) {
-    <div #cornerAnchor class="anchor top-left">
-      <div
-        class="rotate-anchor"
-        (mousemove)="onEnterLeave($event, CursorType.Rotate, 315)"
-        (mouseleave)="onEnterLeave($event, CursorType.Auto, 0)"
-        (mousedown)="startRotate($event, 315)"
-      ></div>
-      <div
-        class="resize-anchor"
-        (mousemove)="onEnterLeave($event, CursorType.Resize, 315)"
-        (mouseleave)="onEnterLeave($event, CursorType.Auto, 0)"
-        (mousedown)="startResize($event, 'top-left')"
-      ></div>
-    </div>
+<div #cornerAnchor class="anchor top-left">
+  <div
+    class="rotate-anchor"
+    (mousemove)="onEnterLeave($event, CursorType.Rotate, 315)"
+    (mouseleave)="onEnterLeave($event, CursorType.Auto, 0)"
+    (mousedown)="startRotate($event, 315)"
+  ></div>
+  <div
+    class="resize-anchor"
+    (mousemove)="onEnterLeave($event, CursorType.Resize, 315)"
+    (mouseleave)="onEnterLeave($event, CursorType.Auto, 0)"
+    (mousedown)="startResize($event, 'top-left')"
+  ></div>
+</div>
 
-    <div #cornerAnchor class="anchor top-right">
-      <div
-        class="rotate-anchor"
-        (mousemove)="onEnterLeave($event, CursorType.Rotate, 45)"
-        (mouseleave)="onEnterLeave($event, CursorType.Auto, 0)"
-        (mousedown)="startRotate($event, 45)"
-      ></div>
-      <div
-        class="resize-anchor"
-        (mousemove)="onEnterLeave($event, CursorType.Resize, 45)"
-        (mouseleave)="onEnterLeave($event, CursorType.Auto, 0)"
-        (mousedown)="startResize($event, 'top-right')"
-      ></div>
-    </div>
+<div #cornerAnchor class="anchor top-right">
+  <div
+    class="rotate-anchor"
+    (mousemove)="onEnterLeave($event, CursorType.Rotate, 45)"
+    (mouseleave)="onEnterLeave($event, CursorType.Auto, 0)"
+    (mousedown)="startRotate($event, 45)"
+  ></div>
+  <div
+    class="resize-anchor"
+    (mousemove)="onEnterLeave($event, CursorType.Resize, 45)"
+    (mouseleave)="onEnterLeave($event, CursorType.Auto, 0)"
+    (mousedown)="startResize($event, 'top-right')"
+  ></div>
+</div>
 
-    <div #cornerAnchor class="anchor bottom-left">
-      <div
-        class="rotate-anchor"
-        (mousemove)="onEnterLeave($event, CursorType.Rotate, 225)"
-        (mouseleave)="onEnterLeave($event, CursorType.Auto, 0)"
-        (mousedown)="startRotate($event, 225)"
-      ></div>
-      <div
-        class="resize-anchor"
-        (mousemove)="onEnterLeave($event, CursorType.Resize, 225)"
-        (mouseleave)="onEnterLeave($event, CursorType.Auto, 0)"
-        (mousedown)="startResize($event, 'bottom-left')"
-      ></div>
-    </div>
+<div #cornerAnchor class="anchor bottom-left">
+  <div
+    class="rotate-anchor"
+    (mousemove)="onEnterLeave($event, CursorType.Rotate, 225)"
+    (mouseleave)="onEnterLeave($event, CursorType.Auto, 0)"
+    (mousedown)="startRotate($event, 225)"
+  ></div>
+  <div
+    class="resize-anchor"
+    (mousemove)="onEnterLeave($event, CursorType.Resize, 225)"
+    (mouseleave)="onEnterLeave($event, CursorType.Auto, 0)"
+    (mousedown)="startResize($event, 'bottom-left')"
+  ></div>
+</div>
 
-    <div #cornerAnchor class="anchor bottom-right">
-      <div
-        class="rotate-anchor"
-        (mousemove)="onEnterLeave($event, CursorType.Rotate, 135)"
-        (mouseleave)="onEnterLeave($event, CursorType.Auto, 0)"
-        (mousedown)="startRotate($event, 135)"
-      ></div>
-      <div
-        class="resize-anchor"
-        (mousemove)="onEnterLeave($event, CursorType.Resize, 135)"
-        (mouseleave)="onEnterLeave($event, CursorType.Auto, 0)"
-        (mousedown)="startResize($event, 'bottom-right')"
-      ></div>
-    </div>
+<div #cornerAnchor class="anchor bottom-right">
+  <div
+    class="rotate-anchor"
+    (mousemove)="onEnterLeave($event, CursorType.Rotate, 135)"
+    (mouseleave)="onEnterLeave($event, CursorType.Auto, 0)"
+    (mousedown)="startRotate($event, 135)"
+  ></div>
+  <div
+    class="resize-anchor"
+    (mousemove)="onEnterLeave($event, CursorType.Resize, 135)"
+    (mouseleave)="onEnterLeave($event, CursorType.Auto, 0)"
+    (mousedown)="startResize($event, 'bottom-right')"
+  ></div>
+</div>
 
-    <div
-      class="border border-top"
-      (mousemove)="onEnterLeave($event, CursorType.Resize, 0)"
-      (mouseleave)="onEnterLeave($event, CursorType.Auto, 0)"
-      (mousedown)="startResize($event, 'top')"
-    ></div>
-    <div
-      class="border border-bottom"
-      (mousemove)="onEnterLeave($event, CursorType.Resize, 180)"
-      (mouseleave)="onEnterLeave($event, CursorType.Auto, 0)"
-      (mousedown)="startResize($event, 'bottom')"
-    ></div>
-    <div
-      class="border border-left"
-      (mousemove)="onEnterLeave($event, CursorType.Resize, 270)"
-      (mouseleave)="onEnterLeave($event, CursorType.Auto, 0)"
-      (mousedown)="startResize($event, 'left')"
-    ></div>
-    <div
-      class="border border-right"
-      (mousemove)="onEnterLeave($event, CursorType.Resize, 90)"
-      (mouseleave)="onEnterLeave($event, CursorType.Auto, 0)"
-      (mousedown)="startResize($event, 'right')"
-    ></div>
-  }
-
-  @if (rotatable()) {
-    <!-- <div
-      class="anchor rotate"
-      (mousemove)="onEnterLeave($event, CursorType.Rotate)"
-      (mouseleave)="onEnterLeave($event, CursorType.Auto)"
-      (mousedown)="startRotate($event)"
-    ></div> -->
-  }
-}
+<div
+  class="border border-top"
+  (mousemove)="onEnterLeave($event, CursorType.Resize, 0)"
+  (mouseleave)="onEnterLeave($event, CursorType.Auto, 0)"
+  (mousedown)="startResize($event, 'top')"
+></div>
+<div
+  class="border border-bottom"
+  (mousemove)="onEnterLeave($event, CursorType.Resize, 180)"
+  (mouseleave)="onEnterLeave($event, CursorType.Auto, 0)"
+  (mousedown)="startResize($event, 'bottom')"
+></div>
+<div
+  class="border border-left"
+  (mousemove)="onEnterLeave($event, CursorType.Resize, 270)"
+  (mouseleave)="onEnterLeave($event, CursorType.Auto, 0)"
+  (mousedown)="startResize($event, 'left')"
+></div>
+<div
+  class="border border-right"
+  (mousemove)="onEnterLeave($event, CursorType.Resize, 90)"
+  (mouseleave)="onEnterLeave($event, CursorType.Auto, 0)"
+  (mousedown)="startResize($event, 'right')"
+></div>
